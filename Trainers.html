@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trainers — Life Fitness</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Segoe UI",Arial,sans-serif;color:#222;line-height:1.6;background:#f7f9fc;overflow-x:hidden}
+  header{background:#0d1b2a;color:#fff;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.3)}
+  header h1{font-size:1.5rem;letter-spacing:3px;color:#fca311}
+  nav{display:flex;gap:6px;flex-wrap:wrap}
+  nav a{color:#e0e0e0;text-decoration:none;padding:8px 12px;border-radius:6px;font-weight:600;font-size:.9rem;transition:.2s}
+  nav a:hover,nav a.active{background:#fca311;color:#0d1b2a}
+  .hamburger{display:none;background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer}
+  section{max-width:1100px;margin:50px auto;padding:0 24px}
+  section h2{font-size:2rem;color:#0d1b2a;margin-bottom:18px;border-left:6px solid #fca311;padding-left:14px}
+  section p{margin-bottom:14px}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;margin-top:30px}
+  .card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.08);padding-bottom:22px;transition:transform .3s;cursor:pointer}
+  .card:hover{transform:translateY(-6px)}
+  .card img{width:100%;height:240px;object-fit:cover;display:block;margin-bottom:14px}
+  .card h3,.card p{padding:0 20px}
+  .card .role{color:#fca311;font-weight:700;padding:0 20px 10px;display:block}
+  .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:2000;justify-content:center;align-items:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-content{background:#fff;border-radius:14px;max-width:480px;width:100%;padding:30px;text-align:center;animation:pop .3s ease}
+  @keyframes pop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+  .modal-content img{width:130px;height:130px;border-radius:50%;object-fit:cover;margin-bottom:16px;border:4px solid #fca311}
+  .modal-content h3{color:#0d1b2a;margin-bottom:6px}
+  .modal-content .role{color:#fca311;font-weight:700;margin-bottom:12px}
+  .modal-content button{margin-top:16px;padding:10px 24px;background:#0d1b2a;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:700}
+  footer{background:#0d1b2a;color:#cfd8e3;text-align:center;padding:26px;margin-top:60px;font-size:.9rem}
+  #topBtn{position:fixed;bottom:24px;right:24px;background:#fca311;color:#0d1b2a;border:none;padding:14px 17px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:none}
+  @media(max-width:760px){
+    header{flex-direction:column;gap:10px;padding:16px 20px}
+    .hamburger{display:block;position:absolute;right:20px;top:18px}
+    nav{display:none;flex-direction:column;width:100%;text-align:center}
+    nav.open{display:flex}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>LIFE FITNESS</h1>
+  <button class="hamburger" onclick="document.querySelector('nav').classList.toggle('open')">&#9776;</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="About.html">About</a>
+    <a href="program.html">Programs</a>
+    <a href="Workouts.html">Workouts</a>
+    <a href="Trainers.html" class="active">Trainers</a>
+    <a href="Nutrition.html">Nutrition</a>
+    <a href="Membership.html">Membership</a>
+    <a href="Contact.html">Contact</a>
+  </nav>
+</header>
+
+<section>
+  <h2>Our Trainers</h2>
+  <p>Our certified trainers bring years of experience and a passion for helping members succeed. Click any trainer to learn more.</p>
+
+  <div class="card-grid">
+    <div class="card" onclick="openModal('Ashraf')">
+      <img src="im2.png" alt="Muhumuza Ashraf">
+      <h3>Muhumuza Ashraf</h3>
+      <span class="role">Strength &amp; Fitness Trainer</span>
+      <p>Specialises in weight training, body composition and injury-safe strength progression.</p>
+    </div>
+    <div class="card" onclick="openModal('Ramz')">
+      <img src="im6.png" alt="Ramz Max">
+      <h3>Ramz Max</h3>
+      <span class="role">Cardio &amp; Flexibility Trainer</span>
+      <p>Expert in endurance training, HIIT, mobility and flexibility improvement.</p>
+    </div>
+    <div class="card" onclick="openModal('Majorine')">
+      <img src="im3.png" alt="Nabukeera Majorine">
+      <h3>Nabukeera Majorine</h3>
+      <span class="role">Nutrition &amp; Wellness Coach</span>
+      <p>Guides members on balanced meal planning and healthy lifestyle habits.</p>
+    </div>
+  </div>
+</section>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <img id="modalImg" src="" alt="Trainer">
+    <h3 id="modalName"></h3>
+    <div class="role" id="modalRole"></div>
+    <p id="modalBio"></p>
+    <button onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<footer><p>&copy; <span id="year"></span> Life Fitness, Kampala — Uganda. All rights reserved.</p></footer>
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  window.addEventListener('scroll', () => {
+    document.getElementById('topBtn').style.display = window.scrollY > 400 ? 'block' : 'none';
+  });
+
+  const trainers = {
+    Ashraf: {
+      img: 'im1.png',
+      name: 'Muhumuza Ashraf',
+      role: 'Strength & Fitness Trainer',
+      bio: 'With over 8 years of experience, Ashraf has helped hundreds of members transform their strength and physique. Certified in strength & conditioning and injury prevention.'
+    },
+    Ramz: {
+      img: 'im11.png',
+      name: 'Ramz Max',
+      role: 'Cardio & Flexibility Trainer',
+      bio: 'Ramz leads high-energy cardio and mobility sessions. Certified in HIIT, endurance training and functional movement.'
+    },
+    Majorine: {
+      img: 'im9.png',
+      name: 'Nabukeera Majorine',
+      role: 'Nutrition & Wellness Coach',
+      bio: 'Majorine supports members with personalised meal plans and healthy habit coaching, helping you train smarter from the inside out.'
+    }
+  };
+
+  function openModal(key) {
+    const t = trainers[key];
+    document.getElementById('modalImg').src = t.img;
+    document.getElementById('modalName').textContent = t.name;
+    document.getElementById('modalRole').textContent = t.role;
+    document.getElementById('modalBio').textContent = t.bio;
+    document.getElementById('modal').classList.add('open');
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+  }
+</script>
+</body>
+</html>

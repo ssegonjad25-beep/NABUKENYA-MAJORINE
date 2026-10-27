@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Fitness — Home</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Segoe UI",Arial,sans-serif;color:#222;line-height:1.6;background:#f7f9fc;overflow-x:hidden}
+  header{background:#0d1b2a;color:#fff;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.3)}
+  header h1{font-size:1.5rem;letter-spacing:3px;color:#fca311}
+  nav{display:flex;gap:6px;flex-wrap:wrap}
+  nav a{color:#e0e0e0;text-decoration:none;padding:8px 12px;border-radius:6px;font-weight:600;font-size:.9rem;transition:.2s}
+  nav a:hover,nav a.active{background:#fca311;color:#0d1b2a}
+  .hamburger{display:none;background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer}
+
+  /* Hero — single light color */
+  .hero{
+    background:#e3f2fd;
+    color:#0d1b2a;text-align:center;padding:130px 20px;
+    position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;width:400px;height:400px;
+    background:radial-gradient(circle,rgba(255,255,255,.6),transparent 70%);
+    top:-100px;right:-100px;border-radius:50%;
+  }
+  .hero h2{font-size:3rem;margin-bottom:16px;animation:fadeUp 1s ease;position:relative;z-index:1}
+  .hero p{font-size:1.15rem;max-width:640px;margin:0 auto 30px;animation:fadeUp 1.4s ease;position:relative;z-index:1}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  .btn{display:inline-block;background:#fca311;color:#0d1b2a;padding:13px 30px;border-radius:6px;text-decoration:none;font-weight:700;border:none;cursor:pointer;margin:5px;transition:.2s;position:relative;z-index:1}
+  .btn:hover{background:#e59400;transform:translateY(-2px)}
+  .btn.ghost{background:#0d1b2a;color:#fff}
+  .btn.ghost:hover{background:#1b2a4a}
+
+  section{max-width:1100px;margin:60px auto;padding:0 24px}
+  section h2{font-size:2rem;color:#0d1b2a;margin-bottom:18px;border-left:6px solid #fca311;padding-left:14px}
+  section p{margin-bottom:14px}
+
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;margin-top:30px}
+  .card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.08);padding-bottom:22px;transition:transform .3s,box-shadow .3s}
+  .card:hover{transform:translateY(-6px);box-shadow:0 10px 24px rgba(0,0,0,.15)}
+  .card img{width:100%;height:200px;object-fit:cover;display:block;margin-bottom:14px}
+  .card h3,.card p{padding:0 20px}
+
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  footer{background:#0d1b2a;color:#cfd8e3;text-align:center;padding:26px;margin-top:60px;font-size:.9rem}
+  #topBtn{position:fixed;bottom:24px;right:24px;background:#fca311;color:#0d1b2a;border:none;padding:14px 17px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:none;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+
+  @media(max-width:760px){
+    header{flex-direction:column;gap:10px;padding:16px 20px}
+    .hamburger{display:block;position:absolute;right:20px;top:18px}
+    nav{display:none;flex-direction:column;width:100%;text-align:center}
+    nav.open{display:flex}
+    .hero h2{font-size:2rem}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>LIFE FITNESS</h1>
+  <button class="hamburger" onclick="document.querySelector('nav').classList.toggle('open')">&#9776;</button>
+  <nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="About.html">About</a>
+    <a href="program.html">Programs</a>
+    <a href="Workouts.html">Workouts</a>
+    <a href="Trainers.html">Trainers</a>
+    <a href="Nutrition.html">Nutrition</a>
+    <a href="Membership.html">Membership</a>
+    <a href="Contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>BUILD A HEALTHIER YOU</h2>
+  <p>Train your body, strengthen your mind and live a healthier, stronger life with expert coaches and modern facilities.</p>
+  <a href="Membership.html" class="btn">Join Today</a>
+  <a href="About.html" class="btn ghost">Learn More</a>
+</section>
+
+<section class="reveal">
+  <h2>Why Choose Life Fitness?</h2>
+  <div class="card-grid">
+    <div class="card">
+      <img src="im4.png">
+      <h3>Modern Equipment</h3>
+      <p>Fully equipped strength and cardio zones to support every fitness level.</p>
+    </div>
+    <div class="card">
+      <img src="im1.png">
+      <h3>Expert Trainers</h3>
+      <p>Certified professionals who guide you with personalised training plans.</p>
+    </div>
+    <div class="card">
+      <img src="im2.png">
+      <h3>Group Classes</h3>
+      <p>Cardio, strength and flexibility classes that keep you motivated.</p>
+    </div>
+  </div>
+</section>
+
+<footer><p>&copy; <span id="year"></span> Life Fitness, Kampala — Uganda. All rights reserved.</p></footer>
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  window.addEventListener('scroll', () => {
+    document.getElementById('topBtn').style.display = window.scrollY > 400 ? 'block' : 'none';
+  });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

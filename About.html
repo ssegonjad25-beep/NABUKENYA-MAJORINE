@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Life Fitness</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Segoe UI",Arial,sans-serif;color:#222;line-height:1.6;background:#f7f9fc;overflow-x:hidden}
+  header{background:#0d1b2a;color:#fff;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.3)}
+  header h1{font-size:1.5rem;letter-spacing:3px;color:#fca311}
+  nav{display:flex;gap:6px;flex-wrap:wrap}
+  nav a{color:#e0e0e0;text-decoration:none;padding:8px 12px;border-radius:6px;font-weight:600;font-size:.9rem;transition:.2s}
+  nav a:hover,nav a.active{background:#fca311;color:#0d1b2a}
+  .hamburger{display:none;background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer}
+  section{max-width:1100px;margin:50px auto;padding:0 24px}
+  section h2{font-size:2rem;color:#0d1b2a;margin-bottom:18px;border-left:6px solid #fca311;padding-left:14px}
+  section h3{color:#14213d;margin:18px 0 8px}
+  section p{margin-bottom:14px}
+  .banner{width:100%;border-radius:12px;margin-bottom:24px;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+  .tabs{display:flex;gap:10px;margin:26px 0 20px;flex-wrap:wrap}
+  .tab-btn{padding:10px 22px;border:2px solid #0d1b2a;background:#fff;color:#0d1b2a;border-radius:30px;cursor:pointer;font-weight:700;transition:.2s}
+  .tab-btn.active,.tab-btn:hover{background:#0d1b2a;color:#fca311}
+  .tab-content{display:none;animation:fade .4s ease}
+  .tab-content.active{display:block}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;margin-top:20px}
+  .card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.08);padding-bottom:22px;transition:transform .3s}
+  .card:hover{transform:translateY(-6px)}
+  .card img{width:100%;height:190px;object-fit:cover;display:block;margin-bottom:14px}
+  .card h3,.card p{padding:0 20px}
+  .reveal{opacity:0;transform:translateY(40px);transition:.8s}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  footer{background:#0d1b2a;color:#cfd8e3;text-align:center;padding:26px;margin-top:60px;font-size:.9rem}
+  #topBtn{position:fixed;bottom:24px;right:24px;background:#fca311;color:#0d1b2a;border:none;padding:14px 17px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:none}
+  @media(max-width:760px){
+    header{flex-direction:column;gap:10px;padding:16px 20px}
+    .hamburger{display:block;position:absolute;right:20px;top:18px}
+    nav{display:none;flex-direction:column;width:100%;text-align:center}
+    nav.open{display:flex}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>LIFE FITNESS</h1>
+  <button class="hamburger" onclick="document.querySelector('nav').classList.toggle('open')">&#9776;</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="About.html" class="active">About</a>
+    <a href="program.html">Programs</a>
+    <a href="Workouts.html">Workouts</a>
+    <a href="Trainers.html">Trainers</a>
+    <a href="Nutrition.html">Nutrition</a>
+    <a href="Membership.html">Membership</a>
+    <a href="Contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="reveal">
+  <h2>About Us</h2>
+  <img class="banner" src="im4.png">
+  <p>Life Fitness is a modern fitness centre located in Kampala, Uganda, dedicated to helping people improve their strength, fitness and general wellbeing. We combine quality equipment, expert coaching and a welcoming community to help every member reach their goals.</p>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab(event,'vision')">Our Vision</button>
+    <button class="tab-btn" onclick="showTab(event,'mission')">Our Mission</button>
+    <button class="tab-btn" onclick="showTab(event,'values')">Core Values</button>
+  </div>
+
+  <div id="vision" class="tab-content active">
+    <h3>Our Vision</h3>
+    <p>To create a healthier and stronger community through fitness.</p>
+  </div>
+
+  <div id="mission" class="tab-content">
+    <h3>Our Mission</h3>
+    <p>To provide accessible, professional and results-driven fitness services that empower individuals of all ages and abilities to live active, healthy lives.</p>
+  </div>
+
+  <div id="values" class="tab-content">
+    <div class="card-grid">
+      <div class="card">
+        <img src="im7.png">
+        <h3>Commitment</h3>
+        <p>We support every member with consistency and dedication.</p>
+      </div>
+      <div class="card">
+        <img src="im6.png" alt="Community">
+        <h3>Community</h3>
+        <p>We grow stronger together in a supportive environment.</p>
+      </div>
+      <div class="card">
+        <img src="im5.png">
+        <h3>Excellence</h3>
+        <p>We uphold the highest standards in training and service.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><p>&copy; <span id="year"></span> Life Fitness, Kampala — Uganda. All rights reserved.</p></footer>
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  window.addEventListener('scroll', () => {
+    document.getElementById('topBtn').style.display = window.scrollY > 400 ? 'block' : 'none';
+  });
+
+  function showTab(e, id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    e.target.classList.add('active');
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
